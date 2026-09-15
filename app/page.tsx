@@ -85,7 +85,7 @@ export default function HomePage() {
 
       {/* Free presets */}
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 py-16 border-t border-vault-border/70">
+        <section className="vault-section-alt mx-auto max-w-6xl px-6 py-16 border-t border-vault-border/70">
           <div className="mb-8">
             <h2 className="font-display text-2xl sm:text-3xl vault-heading">Free Presets</h2>
             <p className="mt-2 text-vault-muted">
@@ -142,7 +142,7 @@ export default function HomePage() {
 
       {/* Collab CTA */}
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 py-20 border-t border-vault-border/70">
+        <section className="vault-section-alt mx-auto max-w-6xl px-6 py-20 border-t border-vault-border/70">
           <div className="vault-panel flex flex-col items-center gap-4 p-10 text-center">
             <h2 className="font-display text-2xl sm:text-3xl vault-heading">Want to work together?</h2>
             <p className="max-w-xl text-vault-muted">

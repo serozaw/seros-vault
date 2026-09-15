@@ -80,6 +80,21 @@ body::before {
   }
 }
 
+/* Designed placeholder for a preset with no cover image (or a broken one) —
+   reads as an intentional icon tile rather than a blank/broken box. */
+.vault-cover-fallback {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(168, 85, 247, 0.25), transparent 55%),
+    repeating-linear-gradient(
+      135deg,
+      rgba(168, 85, 247, 0.07) 0px,
+      rgba(168, 85, 247, 0.07) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    linear-gradient(155deg, #1c1530, #0a0612 70%);
+}
+
 /* Small pill badge, e.g. "🥁 Drum Kit" tags on preset covers. */
 .vault-badge {
   @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide;
@@ -270,6 +285,24 @@ body::before {
 @keyframes scrollCueBounce {
   0%, 100% { transform: translate(-50%, 0); opacity: 0.5; }
   50% { transform: translate(-50%, 8px); opacity: 1; }
+}
+
+/* ── Alternating section depth ──────────────────────────────────────────
+   Applied to every other homepage section so the page doesn't read as one
+   flat slab of the same background — a faint top-down tint plus a wash of
+   accent color, cheap enough to layer under the studio-grid backdrop. */
+.vault-section-alt {
+  position: relative;
+}
+
+.vault-section-alt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(168, 85, 247, 0.05), transparent 70%),
+    linear-gradient(180deg, rgba(21, 15, 34, 0.5), rgba(21, 15, 34, 0));
 }
 
 /* ── Scroll reveal (components/Reveal.tsx) ────────────────────────────── */

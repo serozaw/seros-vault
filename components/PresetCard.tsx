@@ -11,7 +11,10 @@ function formatPrice(cents: number) {
 export default function PresetCard({ preset }: { preset: Preset }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [coverFailed, setCoverFailed] = useState(false);
   const isDrumKit = preset.tags.some((t) => /drum/i.test(t));
+  const showCover = preset.coverImage && !coverFailed;
+  const visibleTags = preset.tags.slice(0, 2);
 
   async function buy() {
     setLoading(true);
@@ -33,16 +36,22 @@ export default function PresetCard({ preset }: { preset: Preset }) {
 
   return (
     <div className="vault-panel vault-card group flex flex-col overflow-hidden">
-      <div className="aspect-square w-full bg-vault-border/40 relative overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={preset.coverImage}
-          alt={preset.name}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
+      <div className="aspect-square w-full relative overflow-hidden">
+        {showCover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={preset.coverImage}
+            alt={preset.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={() => setCoverFailed(true)}
+          />
+        ) : (
+          <div className="vault-cover-fallback flex h-full w-full items-center justify-center">
+            <span aria-hidden="true" className="text-4xl opacity-80">
+              {isDrumKit ? "🥁" : "🎛️"}
+            </span>
+          </div>
+        )}
         {isDrumKit && (
           <>
             <span className="vault-badge absolute left-3 top-3">🥁 Drum Kit</span>
@@ -54,12 +63,10 @@ export default function PresetCard({ preset }: { preset: Preset }) {
         )}
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex flex-wrap gap-2">
-          {preset.tags.map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-vault-border px-2.5 py-0.5 text-xs text-vault-muted"
-            >
+        <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-vault-muted">
+          {visibleTags.map((t, i) => (
+            <span key={t} className="inline-flex items-center gap-1.5">
+              {i > 0 && <span aria-hidden="true" className="text-vault-border">&middot;</span>}
               {t}
             </span>
           ))}
@@ -74,7 +81,7 @@ export default function PresetCard({ preset }: { preset: Preset }) {
         )}
 
         <div className="flex items-center justify-between pt-2">
-          <span className="font-display text-xl text-vault-accent">
+          <span className="font-display text-2xl leading-none text-vault-accentbright">
             {preset.priceCents === 0 ? "Free" : formatPrice(preset.priceCents)}
           </span>
           {preset.gumroadUrl ? (
