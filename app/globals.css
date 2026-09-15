@@ -104,6 +104,51 @@ body::before {
   backdrop-filter: blur(6px);
 }
 
+/* Gold-trimmed variant — used sparingly where something reads as a value/
+   trust signal (trust strip, price) rather than a category tag, so the
+   palette isn't purple-on-purple everywhere. */
+.vault-badge-gold {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium;
+  background: rgba(201, 162, 75, 0.08);
+  border: 1px solid rgba(201, 162, 75, 0.35);
+  color: #e8c873;
+}
+
+/* ── HUD corner brackets ──────────────────────────────────────────────────
+   Small L-shaped ticks at two opposite corners of a panel — a nod to audio
+   plugin/rack-gear UIs. Pure CSS via two gradient-bordered pseudo-elements,
+   layered on top of whatever panel styling (.vault-panel, etc.) is already
+   applied. */
+.vault-hud {
+  position: relative;
+}
+
+.vault-hud::before,
+.vault-hud::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.vault-hud::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #e8c873;
+  border-left: 2px solid #e8c873;
+  border-top-left-radius: 6px;
+}
+
+.vault-hud::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #e8c873;
+  border-right: 2px solid #e8c873;
+  border-bottom-right-radius: 6px;
+}
+
 .vault-btn,
 .vault-btn-ghost {
   position: relative;
@@ -384,43 +429,6 @@ body::before {
 
 @media (prefers-reduced-motion: reduce) {
   .coffee-fab {
-    animation: none;
-  }
-}
-
-/* ── Sero, the vault ghost mascot ─────────────────────────────────────── */
-
-.ghost-mascot {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
-    drop-shadow(0 0 32px rgba(168, 85, 247, 0.4));
-  animation: ghostFloat 6.5s ease-in-out infinite;
-}
-
-.ghost-mascot-sm {
-  animation-duration: 5.5s;
-}
-
-@keyframes ghostFloat {
-  0%, 100% { transform: translateY(0) rotate(-2deg); }
-  50% { transform: translateY(-18px) rotate(2deg); }
-}
-
-@keyframes ghostBlink {
-  0%, 92%, 100% { transform: scaleY(1); }
-  96% { transform: scaleY(0.15); }
-}
-
-.ghost-mascot .ghost-eye {
-  transform-origin: center;
-  animation: ghostBlink 4.2s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ghost-mascot,
-  .ghost-mascot .ghost-eye {
     animation: none;
   }
 }

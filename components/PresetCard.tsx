@@ -81,7 +81,7 @@ export default function PresetCard({ preset }: { preset: Preset }) {
         )}
 
         <div className="flex items-center justify-between pt-2">
-          <span className="font-display text-2xl leading-none text-vault-accentbright">
+          <span className="font-display text-2xl leading-none text-vault-goldbright">
             {preset.priceCents === 0 ? "Free" : formatPrice(preset.priceCents)}
           </span>
           {preset.gumroadUrl ? (

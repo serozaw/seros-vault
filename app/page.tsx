@@ -6,7 +6,6 @@ import PresetCard from "@/components/PresetCard";
 import TrackShowcase from "@/components/TrackShowcase";
 import FreeDemos from "@/components/FreeDemos";
 import Reveal from "@/components/Reveal";
-import GhostMascot from "@/components/GhostMascot";
 import EqualizerBars from "@/components/EqualizerBars";
 
 const TRUST_STRIP = [
@@ -22,18 +21,8 @@ export default function HomePage() {
     <div>
       {/* Hero */}
       <section className="vault-hero px-6 pt-24 pb-24 text-center">
-        <GhostMascot
-          size={72}
-          className="hidden sm:block"
-          style={{ top: "14%", right: "9%" }}
-        />
-        <GhostMascot
-          size={40}
-          className="ghost-mascot-sm hidden md:block"
-          style={{ bottom: "12%", left: "7%" }}
-        />
         <div className="mx-auto max-w-6xl">
-          <p className="hero-animate hero-animate-1 mb-2 text-sm uppercase tracking-[0.3em] text-vault-accent">
+          <p className="hero-animate hero-animate-1 mb-2 text-sm uppercase tracking-[0.3em] text-vault-goldbright">
             Producer &middot; Sound Designer
           </p>
           <h1 className="hero-animate hero-animate-2 neon-text text-6xl sm:text-8xl leading-[1.05] py-2">
@@ -51,9 +40,9 @@ export default function HomePage() {
               Book a Collab
             </Link>
           </div>
-          <div className="hero-animate hero-animate-5 mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-vault-muted">
+          <div className="hero-animate hero-animate-5 mt-10 flex flex-wrap items-center justify-center gap-3">
             {TRUST_STRIP.map((t) => (
-              <span key={t.label} className="inline-flex items-center gap-1.5">
+              <span key={t.label} className="vault-badge-gold">
                 <span aria-hidden="true">{t.icon}</span>
                 {t.label}
               </span>
@@ -99,7 +88,7 @@ export default function HomePage() {
       {/* Drum kits teaser */}
       <Reveal>
         <section className="mx-auto max-w-6xl px-6 py-16 border-t border-vault-border/70">
-          <div className="vault-panel flex flex-col items-center gap-6 p-8 sm:p-10 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="vault-panel vault-hud flex flex-col items-center gap-6 p-8 sm:p-10 text-center sm:flex-row sm:justify-between sm:text-left">
             <div>
               <p className="vault-kicker">Fresh in the vault</p>
               <h2 className="mt-1 font-display text-2xl sm:text-3xl vault-heading">
@@ -143,7 +132,7 @@ export default function HomePage() {
       {/* Collab CTA */}
       <Reveal>
         <section className="vault-section-alt mx-auto max-w-6xl px-6 py-20 border-t border-vault-border/70">
-          <div className="vault-panel flex flex-col items-center gap-4 p-10 text-center">
+          <div className="vault-panel vault-hud flex flex-col items-center gap-4 p-10 text-center">
             <h2 className="font-display text-2xl sm:text-3xl vault-heading">Want to work together?</h2>
             <p className="max-w-xl text-vault-muted">
               Book a session directly — pick a package, pick a time, pay securely, and

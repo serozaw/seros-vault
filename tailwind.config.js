@@ -13,6 +13,8 @@ module.exports = {
           border: "#2b2140",
           accent: "#a855f7",
           accentbright: "#d8b4fe",
+          gold: "#c9a24b",
+          goldbright: "#e8c873",
           text: "#f3eefc",
           muted: "#a79bc4",
         },
